@@ -83,7 +83,9 @@ function App() {
     formData.append("file", file);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/predict`, formData);
+      const API_URL = "https://mirrors-realtors-institutions-grey.trycloudflare.com ";
+
+      const response = await axios.post(`${API_URL}/predict`, formData);
 
       const predictionData = {
         ...response.data,
