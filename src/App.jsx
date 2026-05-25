@@ -85,7 +85,7 @@ function App() {
     try {
       const API_URL = "https://mirrors-realtors-institutions-grey.trycloudflare.com ";
 
-      const response = await axios.post(`${API_URL}/predict`, formData);
+      const response = await axios.post(`${API_URL}`, formData);
 
       const predictionData = {
         ...response.data,
