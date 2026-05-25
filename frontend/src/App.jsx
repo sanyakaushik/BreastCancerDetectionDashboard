@@ -95,24 +95,22 @@ function App() {
         }
       );
   
-      const confidenceValue = Number(response.data.confidence) / 100;
+      const confidenceValue = response.data.confidence / 100;
 
-const predictionData = {
-  ...response.data,
-  confidence: confidenceValue,
-  malignant_probability:
-    response.data.prediction === "Malignant"
-      ? confidenceValue
-      : 1 - confidenceValue,
-  threshold: 0.5,
-  fileName: file.name,
-  time: new Date().toLocaleString(),
-  riskLevel: getRiskLevel(
-    response.data.prediction === "Malignant"
-      ? confidenceValue
-      : 1 - confidenceValue
-  ),
-};
+      const malignantProbability =
+        response.data.prediction === "Malignant"
+          ? confidenceValue
+          : 1 - confidenceValue;
+      
+      const predictionData = {
+        ...response.data,
+        confidence: confidenceValue,
+        malignant_probability: malignantProbability,
+        threshold: 0.5,
+        fileName: file.name,
+        time: new Date().toLocaleString(),
+        riskLevel: getRiskLevel(malignantProbability),
+      };
   
       setResult(predictionData);
       setHistory((prev) => [predictionData, ...prev]);
