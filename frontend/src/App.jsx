@@ -76,26 +76,47 @@ function App() {
       alert("Please upload a thermal image first.");
       return;
     }
-
+  
     setLoading(true);
-
+  
     const formData = new FormData();
     formData.append("file", file);
-
+  
     try {
-      const API_URL = "https://mirrors-realtors-institutions-grey.trycloudflare.com ";
+      const API_URL = "https://sanyakkk-breast-cancer-backend.hf.space";
+  
+      const response = await axios.post(
+        `${API_URL}/predict`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+  
+      const confidenceValue = Number(response.data.confidence) / 100;
 
-      const response = await axios.post(`${API_URL}`, formData);
-
-      const predictionData = {
-        ...response.data,
-        fileName: file.name,
-        time: new Date().toLocaleString(),
-        riskLevel: getRiskLevel(response.data.malignant_probability),
-      };
-
+const predictionData = {
+  ...response.data,
+  confidence: confidenceValue,
+  malignant_probability:
+    response.data.prediction === "Malignant"
+      ? confidenceValue
+      : 1 - confidenceValue,
+  threshold: 0.5,
+  fileName: file.name,
+  time: new Date().toLocaleString(),
+  riskLevel: getRiskLevel(
+    response.data.prediction === "Malignant"
+      ? confidenceValue
+      : 1 - confidenceValue
+  ),
+};
+  
       setResult(predictionData);
       setHistory((prev) => [predictionData, ...prev]);
+  
     } catch (error) {
       console.error(error);
       alert("Prediction failed. Check if backend is running.");
