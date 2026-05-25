@@ -83,7 +83,7 @@ function App() {
     formData.append("file", file);
 
     try {
-      const API_URL = "https://mirrors-realtors-institutions-grey.trycloudflare.com ";
+      const API_URL = "https://sanyakkk-breast-cancer-backend.hf.space/predict ";
 
       const response = await axios.post(`${API_URL}`, formData);
 
