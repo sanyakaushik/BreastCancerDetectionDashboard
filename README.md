@@ -43,7 +43,7 @@ The project compares multiple transfer learning CNN architectures:
 | Ensemble | 75.9% | 37.5% | 92.1% | 0.844 |
 
 ### ✅ Best Performing Model
-**DenseNet121**
+DenseNet121
 - High malignant sensitivity
 - Strong ROC-AUC performance
 - Optimized for screening-focused classification
@@ -184,7 +184,6 @@ California State University, Fullerton
 
 LinkedIn:
 [https://linkedin.com/in/sanyakaushik](https://linkedin.com/in/sanyakaushik)
-
 
 ```
 ```
