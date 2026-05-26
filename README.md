@@ -5,7 +5,7 @@ An interactive AI-powered medical imaging dashboard for breast thermography anal
 
 ## 🚀 Live Demo
 Frontend:  
-https://your-cloudflare-url.pages.dev](https://breastcancer.sanyakaushik2365.workers.dev
+https://breastcancer.sanyakaushik2365.workers.dev
 
 Backend API:  
 https://sanyakkk-breast-cancer-backend.hf.space/docs
